@@ -1,0 +1,24 @@
+{
+  "name": "shortlink-backend",
+  "version": "1.0.0",
+  "description": "Personalized tinyurl clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unkrich/unkri.ch.git"
+  },
+  "author": "Kevin Unkrich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unkrich/unkri.ch/issues"
+  },
+  "homepage": "https://github.com/unkrich/unkri.ch#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.17"
+  }
+}
