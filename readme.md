@@ -138,3 +138,8 @@ Considering that there is an expiration time with each link, we need a way to ha
 ## Security and Permissions
 
 Still determining whether URL creation should be public, private, or per-user. While I want this for private use, it may be useful for others to access the service. It may be useful for one to be able to manage the links they've generated, and not have others have access to it, and more.
+
+
+## Technologies Used
+* HTML/CSS/JS & Bootstrap
+* NodeJS, ExpressJS, MongoDB
