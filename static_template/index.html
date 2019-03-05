@@ -1,0 +1,215 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>unkri.ch - Short Link Generator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/custom.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container-fluid nav-grey">
+      <div class="container d-flex p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+          <div class="inner">
+            <h3 class="masthead-brand">unkri.ch</h3>
+            <nav class="nav nav-masthead justify-content-center">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><b>Login | Register</b> <span class="caret"></span></a>
+                  <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
+                    <li>
+                       <div class="row">
+                          <div class="col-md-12">
+                            <div>
+                               <form class="form" id="login-nav">
+                                  <div class="form-group">
+                                    <label class="sr-only" for="exampleInputEmail2">Email</label>
+                                    <input type="email" class="form-control"  id="exampleInputEmail2" name="email" placeholder="Email Address" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword2" name="password" placeholder="Password" />
+                                  </div>
+                                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-sm btn-secondary active">
+                                      <input type="radio" id="option1" autocomplete="off" checked /> Sign In
+                                    </label>
+                                    <label class="btn btn-sm btn-secondary">
+                                      <input type="radio" id="option2" autocomplete="off" /> Register
+                                    </label>
+                                  </div>
+                                  <div class="form-group">
+                                      <input type="submit" value="Go" class="btn btn-primary btn-block" />
+                                  </div>
+                               </form>
+                            </div>
+                          </div>
+                       </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+    </div>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron text-white text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-9 mx-auto">
+              <h1 class="cover-heading">Generate & Track Personalized Short Links</h1>
+              <p class="lead">Personalize, track and optimize every link with unkri.ch, a personalized short link generator.</p>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+             <form>
+                <div class="input-group mb-3">
+                  <input type="text" name="urlToShorten" class="form-control" placeholder="Insert URL to shorten here..." aria-label="Insert URL to shorten here..." aria-describedby="basic-addon2" />
+                  <div class="input-group-append">
+                    <input type="submit" class="btn btn-outline-secondary" value="Shorten" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="recent-links">
+        <div class="card col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+          <div class="card-header">
+            Most Recent Links
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <a href="" class="title" target="_blank" rel="noopener noreferrer">Link Title</a>
+                <a href="" class="link" target="_blank" rel="noopener noreferrer">https://www.originalurl.com</a>
+                <div class="short-link-row">
+                  <div class="float-left">   
+                    <a href="" class="short-link" target="_blank" rel="noopener noreferrer">unkri.ch/short</a>
+                    <button type="button" class="btn btn-outline-info">Copy</button>
+                  </div>
+                  <div class="float-right">
+                    # Clicks: 5
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href="" class="title" target="_blank" rel="noopener noreferrer">Link Title</a>
+                <a href="" class="link" target="_blank" rel="noopener noreferrer">https://www.originalurl.com</a>
+                <div class="short-link-row">
+                  <div class="float-left">   
+                    <a href="" class="short-link" target="_blank" rel="noopener noreferrer">unkri.ch/short</a>
+                    <button type="button" class="btn btn-outline-info">Copy</button>
+                  </div>
+                  <div class="float-right">
+                    # Clicks: 5
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href="" class="title" target="_blank" rel="noopener noreferrer">Link Title</a>
+                <a href="" class="link" target="_blank" rel="noopener noreferrer">https://www.originalurl.com</a>
+                <div class="short-link-row">
+                  <div class="float-left">   
+                    <a href="" class="short-link" target="_blank" rel="noopener noreferrer">unkri.ch/short</a>
+                    <button type="button" class="btn btn-outline-info">Copy</button>
+                  </div>
+                  <div class="float-right">
+                    # Clicks: 5
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="dashboard" class="mb-3">
+        <div class="container">
+          <div class="row">
+            <div role="main" class="col-md-12 px-4">
+              <h2>Generate Short Link</h2>
+              <hr />
+              <form id="short-links-alias" onSubmit={this.handleSubmit} class="row">
+                <div class="col-md-6">
+                  <p>Shorten this Url:</p>
+                  <div class="input-group mb-3">
+                    <input type="text" name="urlToShorten" value="" class="form-control" placeholder="Insert URL to shorten here..." aria-label="Insert URL to shorten here..." aria-describedby="basic-addon2" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <p>Alias (Optional):</p>
+                  <p class="alias-name">unkri.ch/</p>
+                  <div class="input-group mb-3 alias-input">
+                    <input type="text" name="alias" value="" class="form-control" placeholder="alias" aria-label="Insert URL to shorten here..." aria-describedby="basic-addon2" />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <input class="btn btn-outline-secondary" type="submit" value="Shorten" />
+                </div>
+              </form>
+
+              <h2 class="pt-5 pb-2 mb-3 border-bottom">My Shortened URLs (5)</h2>
+              <div class="table-responsive mb-5">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>URL</th>
+                      <th>Alias</th>
+                      <th># Visits</th>
+                      <th>Date Created</th>
+                      <th>Stats</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr key={index}>
+                        <td>Link Title</td>
+                        <td><a href="https://www.originalurl.com">https://www.originalurl.com</a></td>
+                        <td><a href="unkri.ch/short">short</a></td>
+                        <td>5</td>
+                        <td>Dec. 22, 2012</td>
+                        <td><a href="#" rel="noopener noreferrer">View</a></td>
+                        <td><a href="#" rel="noopener noreferrer">X</a></td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container text-center">
+      <p>Built and <a href="https://github.com/unkrich/unkri.ch">open sourced</a> by <a href="http://kevinunkrich.com">Kevin Unkrich</a></p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="./js/jquery-slim.min.js"><\/script>')</script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
