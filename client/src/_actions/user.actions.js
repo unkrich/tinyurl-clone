@@ -9,7 +9,7 @@ export const userActions = {
 };
 
 function login(email, password) {
-    return dispatch => {
+    return dispatch => new Promise(function(resolve, reject) {
         dispatch(request({ email }));
 
         userService.login(email, password)
@@ -17,13 +17,15 @@ function login(email, password) {
                 user => { 
                     dispatch(success(user));
                     dispatch(alertActions.success('Login successful'));
+                    resolve(user);
                 },
                 error => {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
+                    reject(error);
                 }
             );
-    };
+    });
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
@@ -36,7 +38,7 @@ function logout() {
 }
 
 function register(user) {
-    return dispatch => {
+    return dispatch => new Promise(function(resolve, reject) {
         dispatch(request(user));
 
         userService.register(user)
@@ -44,13 +46,15 @@ function register(user) {
                 user => { 
                     dispatch(success());
                     dispatch(alertActions.success('Registration successful'));
+                    resolve(user);
                 },
                 error => {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
+                    reject(error);
                 }
             );
-    };
+    });
 
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }

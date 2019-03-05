@@ -7,8 +7,8 @@ import { alert } from './alert.reducer';
 
 const rootReducer = combineReducers({
   authentication,
-  urls,
   registration,
+  urls,
   alert
 });
 

@@ -1,0 +1,21 @@
+#dashboard {
+  margin-top: 3rem;
+}
+.alias-name {
+  font-family: 'Pacifico', cursive;
+  font-size: 24px;
+  float:left; 
+  width:20%;
+}
+.alias-input {
+  float:left; 
+  width:80%;
+}
+@media (max-width: 1200px) {
+  .alias-name {
+    width: 32%;
+  }
+  .alias-input {
+    width: 68%;
+  }
+}

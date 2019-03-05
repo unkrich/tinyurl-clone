@@ -1,0 +1,55 @@
+@media (min-width: 576px) {
+  #recent-links {
+    margin-top: -12rem;
+  }
+}
+@media (max-width: 575px) {
+  #recent-links {
+    margin-top: -2.5rem;
+  }
+}
+
+.card, .card-body {
+  padding: 0;
+}
+.card {
+  color: black;
+  text-align: left;
+}
+.list-group-item a:hover {
+  color: black;
+}
+.list-group-item,.list-group-item a {
+  color: black;
+  text-align: left;
+  text-shadow: none;
+  font-family: inherit;
+}
+a.title {
+    font-size: 16px;
+    line-height: 19px;
+    display: block;
+}
+a.link {
+    font-size: 14px;
+    line-height: 17px;
+    display: block;
+}
+.short-link-row {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 20px;
+}
+a.short-link {
+  font-weight: 600;
+  display: inline-block;
+}
+.btn-outline-info {
+  margin-left: 10px;
+  padding: 2px;
+  font-size: 13px;
+  line-height: 20px;
+}
+.copy-input {
+  display: none;
+}

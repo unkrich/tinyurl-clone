@@ -1,0 +1,9 @@
+@media (min-width: 576px) {
+  .jumbotron {
+      padding: 12rem 2rem;
+  }
+}
+.jumbotron {
+  background-color: #333;
+  border-radius: 0;
+}

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
+import { HomePage } from '../HomePage';
+import { RedirectHandler } from '../RedirectHandler';
 
 class App extends React.Component {
     constructor(props) {
@@ -25,6 +27,8 @@ class App extends React.Component {
               }
               <Router history={history}>
                   <div>
+                      <Route exact path="/" component={HomePage} />
+                      <Route path="/:hash" component={RedirectHandler} />
                   </div>
               </Router>
           </div>
