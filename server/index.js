@@ -1,11 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const jwt = require('./app/helpers/jwt.helper');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+app.use(cors());
+app.use(jwt());
 
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
@@ -24,9 +28,12 @@ mongoose.connect(dbConfig.url, {
 });
 
 
+// Require routes
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to unkri.ch!"});
 });
+require('./app/routes/url.routes.js')(app);
+require('./app/routes/user.routes.js')(app);
 
 app.listen(4000, () => {
     console.log("Server is listening on port 4000");
