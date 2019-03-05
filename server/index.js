@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('./app/helpers/jwt.helper');
+const errorHandler = require('./app/helpers/errorHandler.helper');
 
 const app = express();
 

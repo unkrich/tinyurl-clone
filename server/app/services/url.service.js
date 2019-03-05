@@ -13,20 +13,23 @@ module.exports = {
 };
 
 // Create and Save a new url
-async function create({ originalUrl, alias }, { authorization }) {
+async function create({ originalUrl, alias, expiresAt }, { authorization }) {
     // Validate URL
     if(!originalUrl) {
         throw "Url attribute originalUrl can not be empty";
     }
 
     // Validate alias if provided, or generate
+    var hash;
     if (alias !== undefined) {
         if (await Url.findById(hash)) {
             throw "Alias provided is already in use.";
+        } else {
+            hash = alias;
         }
     } else {
     	// TODO: Needs to generate unique hash, even given same URL
-		hash = hashHelper.generateShortURL(req.body.originalUrl, 0, 4); // size 5
+		hash = hashHelper.generateShortURL(originalUrl, 0, 4); // size 5
     }
 
     var userId;
@@ -43,13 +46,13 @@ async function create({ originalUrl, alias }, { authorization }) {
     const url = new Url({
     	_id: hash,
         title: "No Title Found.",
-        originalUrl: req.body.originalUrl,
-        expiresAt: req.body.expiresAt,
+        originalUrl: originalUrl,
+        expiresAt: expiresAt,
         userId: userId,
     });
 
     // TODO: atomic transactions
-    await url.save();
+    return await url.save();
 };
 
 async function findAll({ authorization }) {
@@ -62,19 +65,16 @@ async function findAll({ authorization }) {
             throw "There was an error associating the user with this url. Sign out and back in. Then try again."
         }
         userId = decoded.sub;
-
-        // TODO: Base on IP if no registered user.
-        await Url.find({'userId': userId});
-    } else {
-        return [];
     }
+    // TODO: Base on IP if no registered user.
+    return await Url.find({'userId': userId});
 };
 
-async function findOne({ alias }) {
+async function findOne(alias) {
 	// TODO: Check Expiration
-    await Url.findById(alias)
+    return await Url.findById(alias)
 }
 
 async function _delete({ alias }) {
-    await Url.findByIdAndRemove(alias);
+    return await Url.findByIdAndRemove(alias);
 };

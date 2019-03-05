@@ -8,12 +8,12 @@ exports.create = (req, res, next) => {
 
 exports.findAll = (req, res, next) => {
     urlService.findAll(req.headers)
-        .then(() => res.json({}))
+        .then(urls => res.json(urls))
         .catch(err => next(err));
 }
 
 exports.findOne = (req, res, next) => {
-    urlService.findOne(req.body)
+    urlService.findOne(req.params.hash)
         .then(url => url ? res.json(url) : res.sendStatus(404))
         .catch(err => next(err));
 }
