@@ -76,7 +76,7 @@ API endpoints that we might expose include:
 * createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)
 * deleteURL(api_dev_key, url_key)
 
-We will explore this in more detail later, though I don't currently have a need to expose these endpoints for use beyond the site itself.
+Because I don't currently have a need to expose these URLs beyond the site, the implementation of api keys will be left out for now.
 
 ## Database Design
 
@@ -86,22 +86,28 @@ Considering that we want to store data that has the properties of:
 * Minimal relationships between records
 * Read-heavy
 
-it seems that the best database for this would be a NoSQL key-value store (like Dynamo).
+it seems that the best database for this would be a NoSQL key-value store (like Dynamo or, as used in this case, MongoDB).
 
 #### Database Schema
 At a basic implementation level, I expect the database schema to look similar to:
 
 - URL
-	- PK: Hash: varchar(16)
-	- OriginalURL: varchar(512)
-	- CreationDate: datetime
-	- ExpirationDate: datetime
-	- UserID: int
+	- PK: \_id: String
+	- userId: String
+	- originalUrl: String, required: true
+	- title: String
+	- numVisits: Number, default: 0
+	- expiresAt: Date, default: Date.now + 10 Years
+	- createdAt: Date, default: Date.now
+	- updatedAt: Date, default: Date.now
+
 - User
-	- PK: UserID: int
-	- Email: varchar(32)
-	- CreationDate: datetime
-	- LastLogin: datetime
+	- hash: String, required: true
+	- firstName: String
+	- lastName: String
+	- email: String, required: true
+	- lastLogin: Date, default: Date.now
+	- createdAt: Date, default: Date.now
 
 ## Basic Design & Algorithm
  Using MD5, SHA256, etc, we can compute a unique hash of the given URL. We can then ecode that hash for displaying. We could also use base36, base62, or bas64 encoding. 
@@ -121,15 +127,17 @@ TODO: Hash function details.
 
 ## Data Partitioning and Replication
 
-While not strictly necessary for a short link generator of this size, it may be interesting to implement hash-based partitioning/consistent hashing.
+While not strictly necessary for a short link generator of this size, it may be interesting to implement hash-based partitioning/consistent hashing. In this case, I've determined not to include it in this simple project.
 
 ## Cache
 
 Similarly, at this scale, cache may not be strictly necessary, but the implementation may be interesting and useful.
 
+In this case, I think a local version of redis and implementation into this project is interesting enough and related enough to include. Refer to resources for implementation details.
+
 ## Load Balancer
 
-Similarly, at this scale, cache may not be strictly necessary, but the implementation may be interesting and useful.
+At this scale, a load balancer may not be strictly necessary, but the implementation may be interesting and useful. Setting this up via a Classic Load Balancer on AWS or similar is easy enough so I've chosen to leave this out of the repository - though a cloudformation template may be useful.
 
 ## DB Cleanup
 
@@ -137,9 +145,19 @@ Considering that there is an expiration time with each link, we need a way to ha
 
 ## Security and Permissions
 
-Still determining whether URL creation should be public, private, or per-user. While I want this for private use, it may be useful for others to access the service. It may be useful for one to be able to manage the links they've generated, and not have others have access to it, and more.
+All URL shortlinks are to be accessible by anyone. The creation and modification of a specific alias for a shortlink will only be possible by the first registrant unless they delete it completely to release it for use by others.
 
+Therefore, all users will need to sign up/sign in. I would like to add the option to quickly paste a link in and persist it without being signed in, though. Currently this is handled as: if you are not signed in, the URL is showed as recently registered to everyone.
+
+## Resources Used
+* [NodeJS/Express/MongoDB API Stack](https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/)
+* [System Design Thoughts](https://medium.com/@adhasmana/system-design-create-a-url-shortening-service-part-2-design-the-write-api-6197c1e0aa1c)
+* [Authentication](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management)
+* [Using AWS DocumentDB](https://medium.com/@cmani/get-going-with-amazon-documentdb-4f547bcbefc8)
+* [Deploying NodeJS on AWS](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1)
+* [Caching](https://www.compose.com/articles/api-caching-with-redis-and-nodejs/)
 
 ## Technologies Used
-* HTML/CSS/JS & Bootstrap
-* NodeJS, ExpressJS, MongoDB
+* HTML/CSS, JavaScript & Bootstrap
+* NodeJS, ExpressJS, ReactJS, Redis, MongoDB
+
