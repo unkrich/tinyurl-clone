@@ -72,7 +72,18 @@ async function findAll({ authorization }) {
 
 async function findOne(alias) {
 	// TODO: Check Expiration
-    return await Url.findById(alias)
+    // TODO: atomic transactions
+    // mongoose's findOneAndUpdate() & findAndModify seem to have a bug.
+
+    return await Url.findOne({_id: alias}, function(err, url) {
+        url.numVisits = url.numVisits + 1;
+        url.markModified('numVisits');
+        url.save(function(err, url) {
+            if (err) {
+                throw "Error: " + err;
+            }
+        })
+    });
 }
 
 async function _delete({ alias }) {
