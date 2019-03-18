@@ -46,7 +46,7 @@ class RecentLinks extends React.Component {
                                 <button type="button" className="btn btn-outline-info" onClick={() => {this.copyUrl("https://unkri.ch/" + url._id)}}>Copy</button>
                               </div>
                               <div className="float-right">
-                                # Clicks: N/A
+                                # Clicks: {url.numVisits}
                               </div>
                             </div>
                           </li>

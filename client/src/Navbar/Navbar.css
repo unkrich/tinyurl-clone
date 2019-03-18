@@ -19,6 +19,7 @@
   font-weight: 700;
   color: rgba(255, 255, 255, .5);
   background-color: transparent;
+  border: none;
   border-bottom: .25rem solid transparent;
 }
 .nav-masthead .nav-link:hover,

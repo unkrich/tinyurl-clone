@@ -54,7 +54,7 @@ class LoginRegisterForm extends React.Component {
         const { email, password, register, submitted } = this.state;
         return (
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><b>Login | Register</b> <span class="caret"></span></a>
+            <button class="dropdown-toggle nav-link" data-toggle="dropdown"><b>Login | Register</b> <span class="caret"></span></button>
             <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
               <li>
                  <div class="row">

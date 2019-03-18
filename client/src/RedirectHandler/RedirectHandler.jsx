@@ -8,6 +8,7 @@ class RedirectHandler extends React.Component {
         super(props);
         this.state = {
             redirect: false,
+            loading: false,
             originalUrl: '/'
         }
 
@@ -21,19 +22,24 @@ class RedirectHandler extends React.Component {
         };
 
         var apiUrl = "http://localhost:4000";
-        console.log(hash)
 
-        var self = this;
-        fetch(`${apiUrl}/urls/${hash}`, requestOptions)
-        .then((resp) => resp.json())
-        .then(function(data) {
+        if (!this.state.loading) {
+            var self = this;
             self.setState({
-              redirect: true,
-              originalUrl: data.originalUrl
-            })
-        });
+              loading: true
+            });
 
-        return <div></div>
+            fetch(`${apiUrl}/urls/${hash}`, requestOptions)
+            .then((resp) => resp.json())
+            .then(function(data) {
+                self.setState({
+                  redirect: true,
+                  originalUrl: data.originalUrl
+                })
+            });
+        }
+
+        return <div>Redirecting...</div>;
     }
 
     renderRedirect() {

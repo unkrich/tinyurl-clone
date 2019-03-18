@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { urlActions, userActions } from '../_actions';
+import { urlActions } from '../_actions';
 
 import { Navbar } from '../Navbar'
 import { Jumbotron } from '../Jumbotron'
@@ -11,11 +11,6 @@ import './HomePage.css'
 class HomePage extends React.Component {
     constructor(props) {
       super(props);
-
-      const authorized = JSON.parse(localStorage.getItem('user')) ? true : false;
-      this.state = {
-          authorized: authorized
-      };
 
       this.shouldRenderDashboard = this.shouldRenderDashboard.bind(this);
     }
@@ -35,7 +30,6 @@ class HomePage extends React.Component {
 
     render() {
         const { urls } = this.props;
-        const { authorized } = this.state;
         return (
           <div>
             <Navbar />

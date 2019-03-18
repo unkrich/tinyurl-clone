@@ -23,7 +23,7 @@ class Navbar extends React.Component {
         return (
           <ul className="nav navbar-nav navbar-right">
             <li className="dropdown">
-              <a href="#" className="nav-link" onClick={this.logout}><b>Logout</b></a>
+              <button className="nav-link" onClick={this.logout}><b>Logout</b></button>
             </li>
           </ul>
         )

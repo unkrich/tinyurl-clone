@@ -11,6 +11,13 @@
   float:left; 
   width:80%;
 }
+.link-button {
+  border: none;
+  background-color: transparent;    
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+}
 @media (max-width: 1200px) {
   .alias-name {
     width: 32%;
