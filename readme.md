@@ -2,6 +2,13 @@
 
 The purpose of this project is to build a personal URL shortener for Kevin Unkrich.
 
+### Setup
+
+* Install MongoDB and start it `brew install mongodb && mongo`
+* Install react dependencies and start it `cd client && yarn install && yarn start`
+* Install node/express dependencies and start it `cd server && yarn install && node index.js`
+* Navigate to localhost:3000
+
 ## Requirements and Goals
 
 #### Functional Requirements
