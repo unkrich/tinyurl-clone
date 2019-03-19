@@ -36,7 +36,7 @@ class RecentLinks extends React.Component {
                   </div>
                   <div className="card-body">
                     <ul className="list-group list-group-flush">
-                        {urls.items.slice(urls.items.length - 3,urls.items.length).reverse().map((url, index) =>
+                        {urls.items.slice(urls.items.length - Math.min(urls.items.length, 3),urls.items.length).reverse().map((url, index) =>
                           <li className="list-group-item" key={index}>
                             <a href={url.originalUrl} className="title" target="_blank" rel="noopener noreferrer">{url.title}</a>
                             <a href={url.originalUrl} className="link" target="_blank" rel="noopener noreferrer">{url.originalUrl}</a>
