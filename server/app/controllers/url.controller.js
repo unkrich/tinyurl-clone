@@ -19,7 +19,7 @@ exports.findOne = (req, res, next) => {
 }
 
 exports._delete = (req, res, next) => {
-    urlService.delete(req.body)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
+    urlService._delete(req.headers.authorization, req.params.hash)
+        .then(url => url ? res.json(url) : res.sendStatus(404))
         .catch(err => next(err));
 }

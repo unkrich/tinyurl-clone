@@ -86,6 +86,14 @@ async function findOne(alias) {
     });
 }
 
-async function _delete({ alias }) {
+async function _delete(alias) {
+    if (authorization) {
+        var decoded;
+        try {
+            decoded = jwt.verify(authorization.split(' ')[1], config.secret);
+        } catch (e) {
+            throw "You don't have permission to delete this url."
+        }
+    }
     return await Url.findByIdAndRemove(alias);
 };

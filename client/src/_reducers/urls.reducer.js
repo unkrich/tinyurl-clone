@@ -29,6 +29,20 @@ export function urls(state = {}, action) {
       return { 
         error: action.error
       };
+    case urlConstants.DELETE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case urlConstants.DELETE_SUCCESS:
+      return {
+        items: state.items.filter(url => url.originalUrl !== action.url.originalUrl)
+      };
+    case urlConstants.DELETE_FAILURE:
+      return { 
+        ...state,
+        error: action.error
+      };
     default:
       return state
   }

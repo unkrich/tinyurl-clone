@@ -5,7 +5,8 @@ var apiUrl = "http://localhost:4000";
 export const urlService = {
     create,
     getOne,
-    getAll
+    getAll,
+    _delete
 };
 
 function create(originalUrl, alias) {
@@ -18,13 +19,13 @@ function create(originalUrl, alias) {
     return fetch(`${apiUrl}/urls/new`, requestOptions).then(handleResponse);
 }
 
-function getOne(hash) {
+function getOne(alias) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${apiUrl}/urls/${hash}`, requestOptions).then(handleResponse);
+    return fetch(`${apiUrl}/urls/${alias}`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
@@ -34,6 +35,15 @@ function getAll() {
     };
 
     return fetch(`${apiUrl}/urls`, requestOptions).then(handleResponse);
+}
+
+function _delete(alias) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+
+    return fetch(`${apiUrl}/urls/delete/${alias}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

@@ -17,8 +17,9 @@ class DashboardSection extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleDelete(e) {
-      // TODO
+    handleDelete(alias) {
+      const { dispatch } = this.props;
+      dispatch(urlActions._delete(alias));
     }
 
     handleChange(e) {
@@ -96,7 +97,7 @@ class DashboardSection extends React.Component {
                                     <td><a href={"https://unkri.ch/" + url._id}>{url._id}</a></td>
                                     <td>{url.numVisits}</td>
                                     <td>{url.createdAt}</td>
-                                    <td><button onClick={this.delete} className="link-button">X</button></td>
+                                    <td><button onClick={() => this.handleDelete(url._id)} className="link-button">X</button></td>
                                   </tr>
                                 )}
                             </tbody>

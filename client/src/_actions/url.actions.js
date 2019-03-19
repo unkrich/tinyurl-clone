@@ -5,7 +5,8 @@ import { alertActions } from './';
 export const urlActions = {
     create,
     getOne,
-    getAll
+    getAll,
+    _delete
 };
 
 function create(originalUrl, alias=undefined) {
@@ -60,4 +61,23 @@ function getAll() {
     function request() { return { type: urlConstants.GETALL_REQUEST } }
     function success(urls) { return { type: urlConstants.GETALL_SUCCESS, urls } }
     function failure(error) { return { type: urlConstants.GETALL_FAILURE, error } }
+}
+
+function _delete(alias) {
+    return dispatch => {
+        dispatch(request());
+
+        urlService._delete(alias)
+            .then(
+                url => dispatch(success(url)),
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: urlConstants.DELETE_REQUEST } }
+    function success(url) { return { type: urlConstants.DELETE_SUCCESS, url } }
+    function failure(error) { return { type: urlConstants.DELETE_FAILURE, error } }
 }
