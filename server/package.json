@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/unkrich/unkri.ch#readme",
   "dependencies": {
+    "async-redis": "^1.1.7",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",

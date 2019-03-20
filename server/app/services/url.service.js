@@ -1,6 +1,8 @@
 const hashHelper = require('../helpers/hash.helper');
 const config = require('../../config/hash.config.json');
 const jwt = require('jsonwebtoken');
+const asyncRedis = require("async-redis");    
+const client = asyncRedis.createClient();
 
 const Url = require('../models/url.model');
 const User = require('../models/user.model');
@@ -76,7 +78,12 @@ async function findAll({ authorization }) {
         userId = decoded.sub;
     }
     // TODO: Base on IP if no registered user.
-    return await Url.find({'userId': userId});
+    const res = await client.get("urls/" + userId);
+    if (res !== null) {
+        return res;
+    } else {
+        return await Url.find({'userId': userId});
+    }
 };
 
 async function findOne(alias) {
@@ -84,7 +91,8 @@ async function findOne(alias) {
     // TODO: atomic transactions
     // mongoose's findOneAndUpdate() & findAndModify seem to have a bug.
 
-    return await Url.findOne({_id: alias}, function(err, url) {
+    // Have to update visits no matter what
+    var url = Url.findOne({_id: alias}, function(err, url) {
         url.numVisits = url.numVisits + 1;
         url.markModified('numVisits');
         url.save(function(err, url) {
@@ -92,7 +100,15 @@ async function findOne(alias) {
                 throw "Error: " + err;
             }
         })
+        client.set("url/" + alias, JSON.stringify(url));
     });
+
+    const res = await client.get("url/" + alias);
+    if (res !== null) {
+        return JSON.parse(res);
+    } else {
+        return await url;
+    }
 }
 
 async function _delete(alias) {
