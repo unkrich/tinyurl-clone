@@ -5,6 +5,7 @@ The purpose of this project is to build a personal URL shortener for Kevin Unkri
 ### Setup
 
 * Install MongoDB and start it `brew install mongodb && mongo`
+* Install redis and start it `brew install redis && redis-server`
 * Install react dependencies and start it `cd client && yarn install && yarn start`
 * Install node/express dependencies and start it `cd server && yarn install && node index.js`
 * Navigate to localhost:3000

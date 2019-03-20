@@ -36,14 +36,14 @@ class Jumbotron extends React.Component {
     render() {
         const { urlToShorten } = this.state;
         return (
-          <div class="jumbotron text-white">
-            <div class="container">
-              <div class="row">
-                <div class="col-xl-9 mx-auto">
-                  <h1 class="cover-heading">Generate & Track Personalized Short Links</h1>
-                  <p class="lead">Personalize, track and optimize every link with unkri.ch, a personalized short link generator.</p>
+          <div className="jumbotron text-white">
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-9 mx-auto">
+                  <h1 className="cover-heading">Generate & Track Personalized Short Links</h1>
+                  <p className="lead">Personalize, track and optimize every link with unkri.ch, a personalized short link generator.</p>
                 </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
                  <form onSubmit={this.handleSubmit}>
                     <div className="input-group mb-3">
                       <input type="text" name="urlToShorten" value={urlToShorten} onChange={this.handleChange} className="form-control" placeholder="Insert URL to shorten here..." aria-label="Insert URL to shorten here..." aria-describedby="basic-addon2" />

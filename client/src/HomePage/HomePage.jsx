@@ -40,7 +40,7 @@ class HomePage extends React.Component {
 
             { this.shouldRenderDashboard() }
 
-            <footer class="container text-center">
+            <footer className="container text-center">
               <p>Built and <a href="https://github.com/unkrich/unkri.ch">open sourced</a> by <a href="http://kevinunkrich.com">Kevin Unkrich</a></p>
             </footer>
           </div>

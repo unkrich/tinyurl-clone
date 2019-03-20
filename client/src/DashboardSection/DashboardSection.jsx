@@ -86,7 +86,7 @@ class DashboardSection extends React.Component {
                             <th>Delete</th>
                           </tr>
                         </thead>
-                        {urls.loading && <em>Loading urls...</em>}
+                        {urls.loading && <tbody><tr><td>Loading urls...</td></tr></tbody>}
                         {urls.error && <span className="text-danger">ERROR: {urls.error}</span>}
                         {urls.items &&
                             <tbody>
