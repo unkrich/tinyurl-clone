@@ -1,3 +1,5 @@
+Temporary note: The demo at unkri.ch is not currently available.
+
 # unkri.ch URL Shortener
 
 The purpose of this project is to build a personal URL shortener for Kevin Unkrich.
